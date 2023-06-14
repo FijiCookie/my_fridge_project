@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Fridge</title>
+</head>
+<body>
+<h1>Aktuelle Lebensmittel im Kühlschrank</h1>
+ <form method="POST" action="/">
+        <label for="name">Lebensmittel:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="mhd">MHD (dd.mm.yy):</label>
+        <input type="text" id="mhd" name="mhd" required><br>
+
+        <label for="bewertung">Wie gefällt dir das Lebensmittel? (1 = sehr schlecht, 10 = sehr gut):</label>
+        <input type="number" id="bewertung" name="bewertung" min="1" max="10" required><br>
+
+        <input type="submit" value="Hinzufügen">
+    </form>
+
+    <h2>Lebensmittelliste:</h2>
+    <ul>
+        {% for lebensmittel in lebensmittel %}
+            <li>
+                {{ lebensmittel.name }} - MHD: {{ lebensmittel.mhd }} - Bewertung: {{ lebensmittel.bewertung }}
+                <a href="/loeschen/{{ lebensmittel.name }}">Löschen</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/visualisierung">Visualisierung anzeigen</a>
+
+</body>
+</html>

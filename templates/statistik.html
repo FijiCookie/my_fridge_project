@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auswertung von "My Fridge"</title>
+</head>
+<body>
+ <h1>Meine Lieblingsprodukte im Kühlschrank</h1>
+    <div id="chart"></div>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        Plotly.d3.csv('data.csv', function(data) {
+            var layout = {title: 'Meine Lieblingsprodukte im Kühlschrank', showlegend: false};
+            Plotly.newPlot('chart', data, layout);
+        });
+    </script>
+</body>
+</html>

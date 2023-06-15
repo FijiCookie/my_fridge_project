@@ -1,18 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+{% include "header.html" %}
+<!--Einfügen des Headers-->
 <head>
     <meta charset="UTF-8">
     <title>Auswertung von "My Fridge"</title>
 </head>
 <body>
  <h1>Meine Lieblingsprodukte im Kühlschrank</h1>
-    <div id="chart"></div>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script>
-        Plotly.d3.csv('data.csv', function(data) {
-            var layout = {title: 'Meine Lieblingsprodukte im Kühlschrank', showlegend: false};
-            Plotly.newPlot('chart', data, layout);
-        });
-    </script>
+  <div class="container">
+        <br><h2>Übersicht</h2>
+        <form method="POST">
+            Achtung diese Produkte laufen bald ab!<br><br>
+<!--            <div class="row g-3">-->
+<!--                <div class="form-group col-3">-->
+<!--                     <label for="inputMHD">MHD</label>-->
+<!--                    <select id="inputMHD" class="form-control" name="mhd">-->
+<!--                        <option selected>Kategorie auswählen...</option>-->
+<!--                        <option>Bis heute konsumierbar</option>-->
+<!--                        <option>Bis morgen konsumierbar</option>-->
+<!--                        <option>Bis übermorgen konsumierbar</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--                <div class="row g-3">-->
+<!--                    <div class="col">-->
+<!--                        <button type="submit" class="btn btn-primary">Suchen</button>-->
+<!--                        <a href="{{ url_for('ausgabe') }}" type="reset" class="btn btn-danger" role="button">Zurücksetzen</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+ <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>MHD</th>
+                <th>Bewertung</th>
+                <th>Kategorie</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, eintrag in eintraege %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ key }}</td>
+                <td>{{ eintrag['MHD'] }}</td>
+                <td>{{ eintrag['Bewertung'] }}</td>
+                <td>{{ eintrag['Kategorie'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<!--{% for key, eintrag in eintraege %}-->
+<!--    &lt;!&ndash; Hier werden die Lebensmittel angezeigt, welche bald ablaufen &ndash;&gt;-->
+<!--    <p>Name: {{ eintrag['Name'] }}</p>-->
+<!--    <p>MHD: {{ eintrag['MHD'] }}</p>-->
+<!--    <p>Bewertung: {{ eintrag['Bewertung'] }}</p>-->
+<!--{% endfor %}-->
+
+        </form><br>
+
+<!--    <div id="chart"></div>-->
+<!--    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>-->
+<!--    <script>-->
+<!--        Plotly.d3.csv('data.csv', function(data) {-->
+<!--            var layout = {title: 'Meine Lieblingsprodukte im Kühlschrank', showlegend: false};-->
+<!--            Plotly.newPlot('chart', data, layout);-->
+<!--        });-->
+<!--    </script>-->
 </body>
 </html>

@@ -4,13 +4,28 @@
     <meta charset="UTF-8">
     <title>My Fridge</title>
 </head>
+{% include "header.html" %}
+<!--Einfügen des Headers-->
 <body>
 <h1>Aktuelle Lebensmittel im Kühlschrank</h1>
+<h3>Möchtest du etwas in den Kühlschrank hinzufügen?</h3>
+<p style="color: purple;"><i>{{ eintrag }}</i></p>
  <form method="POST" action="/">
         <label for="name">Lebensmittel:</label>
         <input type="text" id="name" name="name" required><br>
 
-        <label for="mhd">MHD (dd.mm.yy):</label>
+     <div class="form-group">
+     <label for="kategorie"><b>Kategorie</b></label>
+                         <select multiple class="form-control" id="kategorie" name="kategorie" required>
+                          <option>Gemüse</option>
+                          <option>Früchte</option>
+                          <option>Milchprodukte</option>
+                          <option>Fleisch</option>
+                          <option>Sonstiges</option>
+                          </select>
+         </div>
+
+        <label for="mhd">MHD (d-m-yy):</label>
         <input type="text" id="mhd" name="mhd" required><br>
 
         <label for="bewertung">Wie gefällt dir das Lebensmittel? (1 = sehr schlecht, 10 = sehr gut):</label>

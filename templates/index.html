@@ -2,20 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Fridge</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/main.css">
 </head>
 {% include "header.html" %}
 <!--Einfügen des Headers-->
 <body>
-<h1>Aktuelle Lebensmittel im Kühlschrank</h1>
-<h3>Möchtest du etwas in den Kühlschrank hinzufügen?</h3>
-<p style="color: purple;"><i>{{ eintrag }}</i></p>
- <form method="POST" action="/">
-        <label for="name">Lebensmittel:</label>
-        <input type="text" id="name" name="name" required><br>
+<div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="mt-5">Aktuelle Lebensmittel im Kühlschrank</h1>
+                <h3 class="lead">Möchtest du etwas in den Kühlschrank hinzufügen?</h3>
+                <p style="color: purple;"><i>{{ eintrag }}</i></p>
+            </div>
+        </div>
+</div>
 
-     <div class="form-group">
-     <label for="kategorie"><b>Kategorie</b></label>
+    <div class="form-holder">
+        <div class="form-content">
+            <form method="POST" action="/">
+            <label for="name">Lebensmittel:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <div class="form-group">
+            <label for="kategorie"><b>Kategorie</b></label>
                          <select multiple class="form-control" id="kategorie" name="kategorie" required>
                           <option>Gemüse</option>
                           <option>Früchte</option>
@@ -23,16 +35,18 @@
                           <option>Fleisch</option>
                           <option>Sonstiges</option>
                           </select>
-         </div>
+            </div>
 
-        <label for="mhd">MHD (d-m-yy):</label>
-        <input type="text" id="mhd" name="mhd" required><br>
+            <label for="mhd">MHD (d-m-yy):</label>
+            <input type="text" id="mhd" name="mhd" required><br>
 
-        <label for="bewertung">Wie gefällt dir das Lebensmittel? (1 = sehr schlecht, 10 = sehr gut):</label>
-        <input type="number" id="bewertung" name="bewertung" min="1" max="10" required><br>
+            <label for="bewertung">Wie gefällt dir das Lebensmittel? (1 = sehr schlecht, 10 = sehr gut):</label>
+            <input type="number" id="bewertung" name="bewertung" min="1" max="10" required><br>
 
-        <input type="submit" value="Hinzufügen">
-    </form>
+            <input type="submit" value="Hinzufügen">
+        </form>
+        </div>
+    </div>
 
     <h2>Lebensmittelliste:</h2>
     <ul>
@@ -44,7 +58,8 @@
         {% endfor %}
     </ul>
 
-    <a href="/visualisierung">Visualisierung anzeigen</a>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/form-validation.js"></script>
 </body>
 </html>

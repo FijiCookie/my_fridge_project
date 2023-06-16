@@ -6,6 +6,7 @@ from flask import redirect
 import json
 import daten
 from datetime import datetime
+from collections import defaultdict
 
 
 #test
@@ -72,6 +73,26 @@ def ausgabe():
     eingabe_sortiert = sorted(eingabe.items(), key=lambda x: datetime.strptime(x[1]['MHD'], '%d-%m-%y'))
 
     return render_template('statistik.html', eintraege=eingabe_sortiert)
+
+
+# Versuch Lebensmittel in Kategorien anzuzeigen
+
+# @app.route("/statistik/", methods=['GET'])
+# def zahlenauswertung():
+#     eingabe = daten.eingabe_laden()
+#
+#     kategorie_count = defaultdict(int)  # Ein leeres importiertes Wörterbuch zur Zählung der Kategorien
+#
+#     for lebensmittel in eingabe.values():
+#         kategorie = lebensmittel['kategorie']
+#         kategorie_count[kategorie] += 1
+#
+#     print(kategorie_count)
+#     return render_template('statistik.html', kategorie_count=kategorie_count)
+
+
+
+
 
 # @app.route('/loeschen/<name>')
 # def loeschen(name):

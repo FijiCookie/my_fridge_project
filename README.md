@@ -16,7 +16,8 @@ Das Projekt My Fridge kann heruntergeladen werden und auf dem eigenen Gerät ins
 # Benutzung
 Die Webapplikation kann standardmässig ausgeführt werden.Um denfrisch zu behalten, kann der Benutzer die Datensätze direkt in der Datei:ausgabe_dictonary.json löschen,wenn etwas nicht mehr im Kühlschrank ist.
 # Ablaufdiagramm
-
+Das Ablaufdiagramm stellt den Ablauf dar, welcher der Nutzer der My Fridge App durchläuft. 
+![Ablaufdiagramm](Ablaufdiagramm.png)
 # Ordnerstruktur:
 Für allfällige Erweiterungen oder Skalierungen des Projektes sind in der Ordner Struktur alle Bootstrap Datein abgelegt. Die Ordnerstruktur sieht wiefolt aus:
 ![Ordnerstruktur](Ordnerstruktur.png)

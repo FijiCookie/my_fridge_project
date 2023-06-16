@@ -106,5 +106,17 @@
         "Kategorie": "Sonstiges",
         "MHD": "17-10-24",
         "Bewertung": 6
+    },
+    "Ravioli": {
+        "Name": "Ravioli",
+        "Kategorie": "Sonstiges",
+        "MHD": "21-6-23",
+        "Bewertung": 8
+    },
+    "N\u00fcsslisalat": {
+        "Name": "N\u00fcsslisalat",
+        "Kategorie": "Gem\u00fcse",
+        "MHD": "16-6-23",
+        "Bewertung": 4
     }
 }

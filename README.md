@@ -17,6 +17,9 @@ Das Projekt My Fridge kann heruntergeladen werden und auf dem eigenen Gerät ins
 Die Webapplikation kann standardmässig ausgeführt werden.Um denfrisch zu behalten, kann der Benutzer die Datensätze direkt in der Datei:ausgabe_dictonary.json löschen,wenn etwas nicht mehr im Kühlschrank ist.
 # Ablaufdiagramm
 
+# Ordnerstruktur:
+Für allfällige Erweiterungen oder Skalierungen des Projektes sind in der Ordner Struktur alle Bootstrap Datein abgelegt. Die Ordnerstruktur sieht wiefolt aus:
+![Ordnerstruktur](Ordnerstruktur.png)
 # Mögliche Erweiterung
 Die Autorin versuche sich mit der visuellen Darstellung der Lieblingsprodukte. Leider funktionierte dies nicht, da es eine Fehlermeldung (welche nicht behoben werden konnte) bei der Installation von Plotly gab. In einer Erweiterung müsste diese Fehlermeldung angegangen werden oder eine andere Bibliothek als Plotly verwendet werden müssen. Auf jeden Fall könnte so die aktuellen Produkte auf einer x-Achse und die jeweilige Bewertung auf der y-Achse angezeigt werden. Nebst der Visualisierung können weitere Statistiken erstellt werden, wie zum Beispiel welche Kategorie hat durchschnittlich der beste Wert der Beurteilung.
 # Gebaut mit

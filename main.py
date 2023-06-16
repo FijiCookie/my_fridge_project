@@ -74,6 +74,25 @@ def ausgabe():
 
     return render_template('statistik.html', eintraege=eingabe_sortiert)
 
+@app.route('/statistik', methods=['GET'])
+def abgelaufen():
+    heute = datetime.date.today()
+
+    with open('ausgabe_dictonary.json', 'r') as file:
+        daten = json.load(file)
+
+    abgelaufen_liste = []
+    for element in daten:
+        mhd = datetime.datetime.strptime(element['mhd'], '%d-%m-%Y').date()
+        if mhd < heute:
+            abgelaufen_liste.append({
+                'name': element['name'],
+                'mhd': element['mhd'],
+                'kategorie': element['kategorie'],
+                'bewertung': element['bewertung']
+            })
+
+    return render_template('statistik.html', abgelaufen=abgelaufen_liste)
 
 # Versuch Lebensmittel in Kategorien anzuzeigen
 

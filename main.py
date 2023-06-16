@@ -5,7 +5,7 @@ import datetime
 
 """
 Diese Webapplikation wurde anhand verschiedene Tutorials, Dokumentationen & YouTube-Videos erstellt. 
-Hierbei handelte es sich hauptsächlich um W3Schools, DelftStack, geeksforgeeks, Bootstrap Dokumentation, Jinja Dokumentation, Python Dokumentationen wie zum Beispiel über dattime. 
+Hierbei handelte es sich hauptsächlich um W3Schools, DelftStack, geeksforgeeks, Bootstrap Dokumentation, Jinja Dokumentation, Python Dokumentationen wie zum Beispiel über datetime. 
 Zudem orientierte sich die Autorin an ähnlichen Projekte auf Github und den Vorlesungen von den Modulen Programmieren 1 und 2. Nebst dem Tutoring von einem Vorganggenprojekt, welches  hier auch angewendet werden konnte, hatte die Autorin die Möglichkeit kleines Tutoring von zwei Studenten (N. Steiger & S. Kienberger), welche das Modul schon absolvierten, zu erhalten.
 """
 

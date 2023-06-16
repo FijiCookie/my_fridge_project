@@ -1,116 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-{% include "header.html" %}
-<!--Einfügen des Headers-->
+{% include "header.html" %} <!-- Einfügen des Headers -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Auswertung von "My Fridge"</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
-      background-color: #f8f9fa;
-      border-color: #dee2e6;
-      text-align: center;
+        background-color: #f8f9fa;
+        border-color: #dee2e6;
+        text-align: center;
     </style>
 </head>
 <body>
-    <h1>Abgelaufene Elemente:</h1>
-     <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>MHD</th>
-                <th>Kategorie</th>
-                <th>Bewertung</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for element in abgelaufen %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <br><br>
+            <h2>Abgelaufene Lebensmittel:</h2>
+            Schnell essen oder entsorgen!<br><br>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>MHD</th>
+                    <th>Bewertung</th>
+                    <th>Kategorie</th>
+                    <th>Abgelaufen seit (Tage)</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for element in abgelaufen %}
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td>{{ key }}</td>
+                    <td>{{ element['Name'] }}</td>
                     <td>{{ element['MHD'] }}</td>
                     <td>{{ element['Bewertung'] }}</td>
                     <td>{{ element['Kategorie'] }}</td>
+                    <td>{{ element['abgelaufen_seit'] }}</td>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-            </div>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
-        <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <br><h2>Übersicht</h2>
-        <form method="POST">
-            Achtung diese Produkte laufen bald ab!<br><br>
-            </div>
-        </div>
 </div>
 
-<!--            <div class="row g-3">-->
-<!--                <div class="form-group col-3">-->
-<!--                     <label for="inputMHD">MHD</label>-->
-<!--                    <select id="inputMHD" class="form-control" name="mhd">-->
-<!--                        <option selected>Kategorie auswählen...</option>-->
-<!--                        <option>Bis heute konsumierbar</option>-->
-<!--                        <option>Bis morgen konsumierbar</option>-->
-<!--                        <option>Bis übermorgen konsumierbar</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--                <div class="row g-3">-->
-<!--                    <div class="col">-->
-<!--                        <button type="submit" class="btn btn-primary">Suchen</button>-->
-<!--                        <a href="{{ url_for('ausgabe') }}" type="reset" class="btn btn-danger" role="button">Zurücksetzen</a>-->
-<!--                    </div>-->
-<!--                </div>-->
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <br><h2>Übersicht</h2>
+            <form method="POST">
+                Achtung diese Produkte laufen bald ab!<br><br>
+        </div>
+    </div>
+</div>
 
-    <div class="container">
+<div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-8">
-        <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>MHD</th>
-                <th>Bewertung</th>
-                <th>Kategorie</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for key, eintrag in eintraege %}
-            <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ key }}</td>
-                <td>{{ eintrag['MHD'] }}</td>
-                <td>{{ eintrag['Bewertung'] }}</td>
-                <td>{{ eintrag['Kategorie'] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-      </div>
+        <div class="col-md-8">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>MHD</th>
+                    <th>Bewertung</th>
+                    <th>Kategorie</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for key, eintrag in eintraege %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ key }}</td>
+                    <td>{{ eintrag['MHD'] }}</td>
+                    <td>{{ eintrag['Bewertung'] }}</td>
+                    <td>{{ eintrag['Kategorie'] }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
+</form><br>
 
-        </form><br>
-
-<!--    <div id="chart"></div>-->
-<!--    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>-->
-<!--    <script>-->
-<!--        Plotly.d3.csv('data.csv', function(data) {-->
-<!--            var layout = {title: 'Meine Lieblingsprodukte im Kühlschrank', showlegend: false};-->
-<!--            Plotly.newPlot('chart', data, layout);-->
-<!--        });-->
-<!--    </script>-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>

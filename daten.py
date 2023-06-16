@@ -1,7 +1,6 @@
 import json
 
-
-# Diese Funktion speicher die eingegebene Daten in einem Jason-File (Json-File wird geschrieben "w")
+# Diese Funktion speichert die eingegebenen Daten in einem Jason-File (Json-File wird geschrieben "w")
 def speichern(name, kategorie, mhd, bewertung):
     datei = "ausgabe_dictonary.json"
     try:
@@ -10,14 +9,13 @@ def speichern(name, kategorie, mhd, bewertung):
     except FileNotFoundError:
         datei_inhalt = {}
 
-    datei_inhalt[name] = {'Name': name,
+    datei_inhalt[name] = {'Name': name, #Hier wird ein Dictionary erstellt um die Kategorien und Werte festzuhalten
                           'Kategorie' : kategorie,
                           'MHD': mhd,
                           'Bewertung': bewertung}
 
     with open(datei, "w") as open_file:
         json.dump(datei_inhalt, open_file, indent=4)
-
 
 # Funktion, um gespeicherte Daten (vom Json-File) wieder laden zu können
 def eingabe_laden():

@@ -1,12 +1,7 @@
-import py as py
-from flask import Flask
-from flask import render_template
-from flask import request
-from flask import redirect
+from flask import Flask, render_template, request
 import json
 import daten
-from datetime import datetime
-from collections import defaultdict
+import datetime
 
 """
 Diese Webapplikation wurde anhand verschiedene Tutorials, Dokumentationen & YouTube-Videos erstellt. 
@@ -15,8 +10,6 @@ Zudem orientierte sich die Autorin an ähnlichen Projekte auf Github und den Vor
 """
 
 app = Flask("My_Fridge")
-
-
 
 @app.route('/', methods=['GET', 'POST']) #Die Startseite wird hier erstellt in Form von einem Formular.
 def index(): #Durch die Definition index, werden die Daten den jeweiligen Übertitel zugeordnet.
@@ -27,38 +20,13 @@ def index(): #Durch die Definition index, werden die Daten den jeweiligen Übert
         bewertung = int(request.form['bewertung'])
         daten.speichern(name, kategorie, mhd, bewertung) #Hier werden die eingegeben Daten gespeichert.
 
-        eintrag_gespeichert = "Du hast ein Lebensmittel in den Kühlschrank hinzugefügt. Willst du mehr hinzufügen?."
+        eintrag_gespeichert = "Supper, du hast ein Lebensmittel in My Fridge hinzugefügt. Willst noch du mehr hinzufügen?."
 
         return render_template('index.html', eintrag=eintrag_gespeichert) #Das Formular wird gerendert und falls etwas eingegeben wird es gesendet/gespeichert. Die Funktion dazu befindet sich in daten.py.
 
     return render_template('index.html')
 
 
-# Hat fast funktioniert!!
-# @app.route('/statistik', methods=['GET', 'POST'])
-# def ausgabe():
-#     eingabe = daten.eingabe_laden()  # holt Daten aus daten.py
-#     filter_liste = []
-#     filter_value = ""
-#     filter_key = ""
-#     gefiltert = False
-#
-#     if request.method == 'POST':
-#         gefiltert = True
-#         mhd = request.form['mhd']
-#
-#         if mhd != "":
-#             filter_value = mhd
-#             filter_key = "MHD"
-#
-#         for key, eintrag in eingabe.items():
-#             if eintrag[filter_key] == filter_value:
-#                 filter_liste.append(eintrag)
-#
-#     # Daten sortieren nach dem aktuellen Datum
-#     eingabe_sortiert = dict(sorted(eingabe.items(), key=lambda x: datetime.strptime(x[1]['MHD'], '%d-%m-%y')))
-#
-#     return render_template('statistik.html', eintraege=eingabe_sortiert, gefilterte_eintraege=filter_liste, ist_gefiltert=gefiltert)
 def eingabe_laden(): #In dieser Funktion werden die Daten aus der Json Datei geladen
     with open('ausgabe_dictonary.json', 'r') as file:
         daten = json.load(file)
@@ -66,89 +34,31 @@ def eingabe_laden(): #In dieser Funktion werden die Daten aus der Json Datei gel
 
 @app.route('/statistik', methods=['GET', 'POST']) #Hier werden die Daten vorbereitet für die Listen Ausgabe im statistik.html
 def ausgabe():
-    eingabe = eingabe_laden()  # holt Daten aus JSON-Datei
+    abgelaufen_liste = abgelaufen() #speichert das Ergebnis von abgelaufen in der 'abgelaufen-liste' Variabel
+    eingabe = eingabe_laden()  # ruft eingabe_laden aus daten.py auf uns speichert es in der eingabe variabel
 
+    eingabe_sortiert = sorted(eingabe.items(), key=lambda x: datetime.datetime.strptime(x[1]['MHD'], '%d-%m-%y'))# Daten sortieren nach dem aktuellen Datum
 
-    eingabe_sortiert = sorted(eingabe.items(), key=lambda x: datetime.strptime(x[1]['MHD'], '%d-%m-%y'))    # Daten sortieren nach dem aktuellen Datum
+    return render_template('statistik.html', eintraege=eingabe_sortiert, abgelaufen=abgelaufen_liste)
 
-    return render_template('statistik.html', eintraege=eingabe_sortiert)
-
-@app.route('/statistik', methods=['GET'])
-def abgelaufen():
-    heute = datetime.date.today()
-
-    with open('ausgabe_dictonary.json', 'r') as file:
-        daten = json.load(file)
+def abgelaufen(): #Hier wird die Datenverarbeitung rund ums MHD vorgenommen. Um das Modul datetime richtig anzuwenden, wurden verschiedene Quellen benutz zum einen https://www.programiz.com/python-programming/datetime, die Dokumentation von Python und schlussendlich mit Nicolas Steiger angeschaut.
+    heute = datetime.date.today() #mit datetime.date.today
+    with open('ausgabe_dictonary.json', 'r') as file: #Die Json Datei wird geöffnet
+        daten = json.load(file) #Die Daten der Datei werden in das 'daten'-Dictionary geladen
 
     abgelaufen_liste = []
-    for element in daten.values():
-        mhd = datetime.datetime.strptime(element['MHD'], '%d-%m-%y').date()
-        if mhd < heute:
+    for element in daten.values(): #jedes element (also jedes Lebensmittel) wird bei den Daten durchlaufen
+        mhd = datetime.datetime.strptime(element['MHD'], '%d-%m-%y').date() #Das MHD Datum wird hier in ein Daytime Opjekt verwandelt, sodas es rechnen kann.
+        abgelaufen_seit = (heute - mhd).days #Hier wird berechnet wieviel Tage es her sind, seit das Lebensmittel abgelaufen ist.
+        element['abgelaufen_seit'] = abgelaufen_seit  # Das 'abelaufen-seit' Feld wird dem 'element' Dictionary hinzugefüt.
+        if mhd < heute: #Ist das MHD von der Vergangenheit? Wenn ja wird es dem 'element'-Dictionary hinzugefügt
             abgelaufen_liste.append(element)
 
-    return render_template('statistik.html', abgelaufen=abgelaufen_liste)
+    return abgelaufen_liste
 
-# Versuch Lebensmittel in Kategorien anzuzeigen
-
-# @app.route("/statistik/", methods=['GET'])
-# def zahlenauswertung():
-#     eingabe = daten.eingabe_laden()
-#
-#     kategorie_count = defaultdict(int)  # Ein leeres importiertes Wörterbuch zur Zählung der Kategorien
-#
-#     for lebensmittel in eingabe.values():
-#         kategorie = lebensmittel['kategorie']
-#         kategorie_count[kategorie] += 1
-#
-#     print(kategorie_count)
-#     return render_template('statistik.html', kategorie_count=kategorie_count)
-
-
-
-
-
-# @app.route('/loeschen/<name>')
-# def loeschen(name):
-#     try:
-#         with open(daten_lebensmittel, 'r') as file:
-#             daten = json.load(file)
-#     except FileNotFoundError:
-#         daten = {}
-#
-#     if name in daten:
-#         del daten[name]
-#
-#         with open(daten_lebensmittel, 'w') as file:
-#             json.dump(daten, file)
-#
-#     return redirect('/')
-
-# Fehlerseiten bei ungültigem URl (Seite nicht gefunden)
-@app.errorhandler(404)
+@app.errorhandler(404) #Bei einer nichtvorhandener URL Abfrage,wird hier das 404.html gerendert
 def page_not_found(e):
     return render_template("404.html"), 404
 
-
-# Interner Serverfehler URL
-@app.errorhandler(500)
-def page_not_found(e):
-    return render_template("500.html"), 500
-
-# @app.route('/visualisierung')
-# def visualisierung():
-#     try:
-#         with open(daten_lebensmittel, 'r') as file:
-#             daten = json.load(file)
-#     except FileNotFoundError:
-#         daten = {}
-#
-#     df = pd.DataFrame.from_dict(daten, orient='index', columns=['name', 'mhd', 'bewertung'])
-#
-#     fig = px.bar(df, x='name', y='bewertung')
-#
-#     fig.write_html('statistik.html')
-#
-#     return render_template('statistik.html')
-
-if __name__ == "__main__":
+if __name__ == "__main__": #Startet die Flask Anwendung
     app.run(debug=True, port=5000)

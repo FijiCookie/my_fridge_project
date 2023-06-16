@@ -7,19 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Auswertung von "My Fridge"</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+      background-color: #f8f9fa;
+      border-color: #dee2e6;
+      text-align: center;
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h1>Meine Lieblingsprodukte im Kühlschrank</h1>
+                <h1 class="mt-5">Meine Lieblingsprodukte im Kühlschrank</h1>
             </div>
         </div>
     </div>
-    <div class="container">
-        <br><h2>Übersicht</h2>
+        <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <br><h2>Übersicht</h2>
         <form method="POST">
             Achtung diese Produkte laufen bald ab!<br><br>
+            </div>
+        </div>
+</div>
 
 <!--            <div class="row g-3">-->
 <!--                <div class="form-group col-3">-->
@@ -38,8 +48,12 @@
 <!--                        <a href="{{ url_for('ausgabe') }}" type="reset" class="btn btn-danger" role="button">Zurücksetzen</a>-->
 <!--                    </div>-->
 <!--                </div>-->
- <table>
-        <thead>
+
+    <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
             <tr>
                 <th>#</th>
                 <th>Name</th>
@@ -60,7 +74,9 @@
             {% endfor %}
         </tbody>
     </table>
-
+      </div>
+    </div>
+</div>
 
 
         </form><br>

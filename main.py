@@ -82,15 +82,10 @@ def abgelaufen():
         daten = json.load(file)
 
     abgelaufen_liste = []
-    for element in daten:
-        mhd = datetime.datetime.strptime(element['mhd'], '%d-%m-%Y').date()
+    for element in daten.values():
+        mhd = datetime.datetime.strptime(element['MHD'], '%d-%m-%y').date()
         if mhd < heute:
-            abgelaufen_liste.append({
-                'name': element['name'],
-                'mhd': element['mhd'],
-                'kategorie': element['kategorie'],
-                'bewertung': element['bewertung']
-            })
+            abgelaufen_liste.append(element)
 
     return render_template('statistik.html', abgelaufen=abgelaufen_liste)
 

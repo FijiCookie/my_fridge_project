@@ -27,10 +27,11 @@
         <tbody>
             {% for element in abgelaufen %}
                 <tr>
-                    <td>{{ element['name'] }}</td>
-                    <td>{{ element['mhd'] }}</td>
-                    <td>{{ element['kategorie'] }}</td>
-                    <td>{{ element['bewertung'] }}</td>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ key }}</td>
+                    <td>{{ element['MHD'] }}</td>
+                    <td>{{ element['Bewertung'] }}</td>
+                    <td>{{ element['Kategorie'] }}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -39,7 +40,6 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="mt-5">Meine Lieblingsprodukte im Kühlschrank</h1>
             </div>
         </div>
     </div>

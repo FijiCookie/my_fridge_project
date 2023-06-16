@@ -13,6 +13,8 @@ Nebst dem Namen und MHD sieht der Nutzer so bei der Ausgabe auch gleich wieder, 
 Die Daten werden im Formular eingegeben und in einer json Datei gespeichert. Schlussendlich werden berechnete Daten und sortierte Daten auf der Seite Statistik angezeigt.
 # Installation
 Das Projekt My Fridge kann heruntergeladen werden und auf dem eigenen Gerät installiert werden. Die Daten werden dann auf dem eigenen Gerät gespeichert.
+# Benutzung
+Die Webapplikation kann standardmässig ausgeführt werden.Um denfrisch zu behalten, kann der Benutzer die Datensätze direkt in der Datei:ausgabe_dictonary.json löschen,wenn etwas nicht mehr im Kühlschrank ist.
 # Ablaufdiagramm
 
 # Mögliche Erweiterung

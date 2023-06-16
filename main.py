@@ -8,29 +8,28 @@ import daten
 from datetime import datetime
 from collections import defaultdict
 
-
-#test
-# import plotly.express as px
-# import pandas as pd
+"""
+Diese Webapplikation wurde anhand verschiedene Tutorials, Dokumentationen & YouTube-Videos erstellt. 
+Hierbei handelte es sich hauptsächlich um W3Schools, DelftStack, Bootstrap Dokumentation, Jinja Dokumentation, Python Dokumentationen wie zum Beispiel über dattime. 
+Zudem orientierte sich die Autorin an ähnlichen Projekte auf Github und den Vorlesungen von den Modulen Programmieren 1 und 2. Nebst dem Tutoring von einem Vorganggenprojekt, welches  hier auch angewendet werden konnte, hatte die Autorin die Möglichkeit kleines Tutoring von zwei Studenten (N. Steiger & S. Kienberger), welche das Modul schon absolvierten, zu erhalten.
+"""
 
 app = Flask("My_Fridge")
 
 
-# daten_lebensmittel = 'daten.json'
 
-
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
+@app.route('/', methods=['GET', 'POST']) #Die Startseite wird hier erstellt in Form von einem Formular.
+def index(): #Durch die Definition index, werden die Daten den jeweiligen Übertitel zugeordnet.
+    if request.method == 'POST': #passiert nur mit dem Button senden
         name = request.form['name']
         kategorie = request.form['kategorie']
         mhd = request.form['mhd']
         bewertung = int(request.form['bewertung'])
-        daten.speichern(name, kategorie, mhd, bewertung)
+        daten.speichern(name, kategorie, mhd, bewertung) #Hier werden die eingegeben Daten gespeichert.
 
         eintrag_gespeichert = "Du hast ein Lebensmittel in den Kühlschrank hinzugefügt. Willst du mehr hinzufügen?."
 
-        return render_template('index.html', eintrag=eintrag_gespeichert)
+        return render_template('index.html', eintrag=eintrag_gespeichert) #Das Formular wird gerendert und falls etwas eingegeben wird es gesendet/gespeichert. Die Funktion dazu befindet sich in daten.py.
 
     return render_template('index.html')
 
@@ -60,17 +59,17 @@ def index():
 #     eingabe_sortiert = dict(sorted(eingabe.items(), key=lambda x: datetime.strptime(x[1]['MHD'], '%d-%m-%y')))
 #
 #     return render_template('statistik.html', eintraege=eingabe_sortiert, gefilterte_eintraege=filter_liste, ist_gefiltert=gefiltert)
-def eingabe_laden():
+def eingabe_laden(): #In dieser Funktion werden die Daten aus der Json Datei geladen
     with open('ausgabe_dictonary.json', 'r') as file:
         daten = json.load(file)
     return daten
 
-@app.route('/statistik', methods=['GET', 'POST'])
+@app.route('/statistik', methods=['GET', 'POST']) #Hier werden die Daten vorbereitet für die Listen Ausgabe im statistik.html
 def ausgabe():
     eingabe = eingabe_laden()  # holt Daten aus JSON-Datei
 
-    # Daten sortieren nach dem aktuellen Datum
-    eingabe_sortiert = sorted(eingabe.items(), key=lambda x: datetime.strptime(x[1]['MHD'], '%d-%m-%y'))
+
+    eingabe_sortiert = sorted(eingabe.items(), key=lambda x: datetime.strptime(x[1]['MHD'], '%d-%m-%y'))    # Daten sortieren nach dem aktuellen Datum
 
     return render_template('statistik.html', eintraege=eingabe_sortiert)
 

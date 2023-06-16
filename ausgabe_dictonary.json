@@ -1,0 +1,110 @@
+{
+    "Erdbeeren": {
+        "Name": "Erdbeeren",
+        "Kategorie": "Fr\u00fcchte",
+        "MHD": "16-6-23",
+        "Bewertung": 8
+    },
+    "Salatsauce": {
+        "Name": "Salatsauce",
+        "Kategorie": "Sonstiges",
+        "MHD": "14-6-23",
+        "Bewertung": 3
+    },
+    "Eisbergsalat": {
+        "Name": "Eisbergsalat",
+        "Kategorie": "Gem\u00fcse",
+        "MHD": "30-6-23",
+        "Bewertung": 6
+    },
+    "Quark": {
+        "Name": "Quark",
+        "Kategorie": "Milchprodukte",
+        "MHD": "29-6-23",
+        "Bewertung": 4
+    },
+    "Peperoni": {
+        "Name": "Peperoni",
+        "Kategorie": "Gem\u00fcse",
+        "MHD": "18-6-23",
+        "Bewertung": 7
+    },
+    "Rahm": {
+        "Name": "Rahm",
+        "Kategorie": "Milchprodukte",
+        "MHD": "28-6-23",
+        "Bewertung": 5
+    },
+    "Wassermelone": {
+        "Name": "Wassermelone",
+        "Kategorie": "Fr\u00fcchte",
+        "MHD": "21-6-23",
+        "Bewertung": 10
+    },
+    "Pouletbrust": {
+        "Name": "Pouletbrust",
+        "Kategorie": "Fleisch",
+        "MHD": "23-6-23",
+        "Bewertung": 6
+    },
+    "Radisli": {
+        "Name": "Radisli",
+        "Kategorie": "Gem\u00fcse",
+        "MHD": "15-6-23",
+        "Bewertung": 1
+    },
+    "Hefe": {
+        "Name": "Hefe",
+        "Kategorie": "Sonstiges",
+        "MHD": "28-7-23",
+        "Bewertung": 5
+    },
+    "Zwiebeln": {
+        "Name": "Zwiebeln",
+        "Kategorie": "Gem\u00fcse",
+        "MHD": "16-6-23",
+        "Bewertung": 2
+    },
+    "Magerquark": {
+        "Name": "Magerquark",
+        "Kategorie": "Milchprodukte",
+        "MHD": "3-7-23",
+        "Bewertung": 4
+    },
+    "Maiskolben": {
+        "Name": "Maiskolben",
+        "Kategorie": "Gem\u00fcse",
+        "MHD": "26-6-23",
+        "Bewertung": 10
+    },
+    "Mozzarella Kugeln klein": {
+        "Name": "Mozzarella Kugeln klein",
+        "Kategorie": "Milchprodukte",
+        "MHD": "20-7-23",
+        "Bewertung": 10
+    },
+    "Salamiwurst": {
+        "Name": "Salamiwurst",
+        "Kategorie": "Fleisch",
+        "MHD": "1-8-23",
+        "Bewertung": 5
+    },
+    "Cassis Jogurth": {
+        "Name": "Cassis Jogurth",
+        "Kategorie": "Milchprodukte",
+        "MHD": "10-6-23",
+        "Bewertung": 3
+    },
+    "El Tony Mate": {
+        "Name": "El Tony Mate",
+        "Kategorie": "Sonstiges",
+        "MHD": "12-12-23",
+        "Bewertung": 10
+    },
+    "Rivella": {
+        "Name": "Rivella",
+        "Kategorie": "Sonstiges",
+        "MHD": "17-10-24",
+        "Bewertung": 6
+    }
+}
